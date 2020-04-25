@@ -38,3 +38,22 @@ notaCuatro:  mov     cl, "M"
         mov     cl, "o"
         mov     [20Ah], cl
         int     20h
+
+;EJERCICIO 2.
+        org 100h
+        mov si, 0d
+        mov ax, 2d
+        mov cx, 2d
+flag1:  mul cx
+        mov [si+210h], ax
+        inc si
+        cmp ax, 256d
+        jb flag1
+
+flag2:  mul cx
+        inc si
+        mov [si+210h], ax
+        inc si
+        cmp si, 14d 
+        jb flag2
+        int 20h
