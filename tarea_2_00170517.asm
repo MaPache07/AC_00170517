@@ -40,7 +40,6 @@ notaCuatro:  mov     cl, "M"
         int     20h
 
 ;EJERCICIO 2.
-        org 100h
         mov si, 0d
         mov ax, 2d
         mov cx, 2d
@@ -58,8 +57,7 @@ flag2:  mul cx
         jb flag2
         int 20h
 
-;EJERCICIO 3
-        org 100h
+;EJERCICIO 3.
         mov ax, 0d
         mov si, 0d
         mov cx, 0d
