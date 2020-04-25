@@ -37,7 +37,6 @@ notaCuatro:  mov     cl, "M"
         mov     [209h], cl
         mov     cl, "o"
         mov     [20Ah], cl
-        int     20h
 
 ;EJERCICIO 2.
         mov si, 0d
@@ -55,7 +54,6 @@ flag2:  mul cx
         inc si
         cmp si, 14d 
         jb flag2
-        int 20h
 
 ;EJERCICIO 3.
         mov ax, 0d
