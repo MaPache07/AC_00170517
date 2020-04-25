@@ -57,3 +57,37 @@ flag2:  mul cx
         cmp si, 14d 
         jb flag2
         int 20h
+
+;EJERCICIO 3
+        org 100h
+        mov ax, 0d
+        mov si, 0d
+        mov cx, 0d
+        mov bx, 1d
+        mov [si+220h], cx
+        inc si
+        mov [si+220h], bx
+        inc si
+
+fibo:   mov ax, bx
+        add ax, cx
+        mov [si+220h], ax
+        inc si
+        mov cx, bx
+        mov bx, ax
+
+        cmp si, 15d
+        jb fibo
+
+fibo2:  mov ax, bx
+        add ax, cx
+        inc si
+        mov [si+220h], ax
+        inc si
+        mov cx, bx
+        mov bx, ax
+
+        cmp ax, 610d
+        jb fibo2
+
+        int 20h
