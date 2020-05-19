@@ -50,9 +50,9 @@ lupi1:	mov 	cl, [msg1+di-4d]
 
 
 section .data
-msg1	db 	"Coronavirus, Coronavirus"
+msg1	db 	"Nunca sabes lo que tienes"
 len1 	equ	$-msg1+4d
-msg2	db 	"Lavense las manos"
+msg2	db 	"Hasta que limpias tu cuarto"
 len2    equ $-msg2
-msg3	db 	"Aganlo seguido"
+msg3	db 	"Pd. Estaba izi"
 len3    equ $-msg3
