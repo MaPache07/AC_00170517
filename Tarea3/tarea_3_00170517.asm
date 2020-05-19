@@ -33,14 +33,21 @@ kbwait: mov 	ax, 0000h
 
 cursr1: mov 	ah, 02h
 	    mov 	dx, di 
-	    mov 	dh, 5d
+	    mov 	dh, 4d
 	    mov 	bh, 0h
 	    int 	10h
 	    ret
 
 cursr2: mov 	ah, 02h
 	    mov 	dx, di 
-	    mov 	dh, 14d
+	    mov 	dh, 12d
+	    mov 	bh, 0h
+	    int 	10h
+	    ret
+
+cursr3: mov 	ah, 02h
+	    mov 	dx, di 
+	    mov 	dh, 20d
 	    mov 	bh, 0h
 	    int 	10h
 	    ret
@@ -59,6 +66,13 @@ lupi2:	mov 	cl, [msg2+di-34d]
 	    inc	    di
 	    cmp 	di, len2
 	    jb	    lupi2
+        mov 	di, 12d
+lupi3:	mov 	cl, [msg3+di-12d]
+	    call    cursr3
+	    call 	w_char
+	    inc	    di
+	    cmp 	di, len3
+	    jb	    lupi3
 	    ret
 
 
@@ -68,4 +82,4 @@ len1 	equ	$-msg1+4d
 msg2	db 	"Hasta que limpias tu cuarto"
 len2    equ $-msg2+34d
 msg3	db 	"Pd. Estaba izi"
-len3    equ $-msg3
+len3    equ $-msg3+12d
