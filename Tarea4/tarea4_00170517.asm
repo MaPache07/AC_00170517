@@ -5,11 +5,11 @@ section .text
         call    texto
         call    phrase
 
-	    xor 	si, si 	;lo mimso que: mov si, 0000h
+        xor 	si, si 	;lo mimso que: mov si, 0000h
 lupi:	call 	kb
         cmp 	al, "$"
-        je	    mostrar
-        mov	    [300h+si], al ; CS:0300h en adelante
+        je	mostrar
+        mov	[300h+si], al ; CS:0300h en adelante
         inc 	si
         jmp 	lupi
         int     20h
@@ -20,19 +20,39 @@ texto:	mov 	ah, 00h
         ret
 
 mostrar:call    texto
-        mov	    byte [300h+si], "$"
-	    call 	w_strng
+        call    nota
+        call 	w_strng
 
         call 	kb	; solo detenemos la ejecución
         int 	20h
 
-kb: 	mov	    ah, 7h
+kb: 	mov     ah, 7h
         int 	21h
         ret
 
-w_strng:mov	    ah, 09h
-        mov 	dx, 300h
-        int 	21h
+nota:   mov     cx, [303h]
+        add     cx, [304h]
+        add     cx, [305h]
+        add     cx, [306h]
+        mov     ch, 0h
+        add     cx, [307h]
+        mov     ax, 5h
+        mov     [254h], ax
+        mov     [250h], cx
+        div     cx
+        mov     [252h], ax
+
+w_strng:mov     ah, 13h
+        mov     al, 01h
+        mov     bh, 00h
+        mov     bl, 00001111b
+        mov     cx, si
+        mov     dl, 0h
+        mov     dh, 0h
+        push    cs
+        pop     es
+        mov     bp, 300h
+        int     10h
         ret
 
 w_char:	mov 	ah, 09h
@@ -54,14 +74,14 @@ phrase:	mov 	di, 0d
 lupis:	mov 	cl, [msg+di]
         call    cursr
         call 	w_char
-        inc	    di
+        inc	di
         cmp 	di, len
-        jb	    lupis
+        jb	lupis
         ret
 
 section .data
-msg 	db 	    "Ingrese su numero de carnet (presione $ para ingresar).  "
-len 	equ	    $-msg
+msg 	db 	"Ingrese su numero de carnet (presione $ para ingresar).  "
+len 	equ	 $-msg
 msg1    db      "Solo necesito el 0"
 len1    equ     $-msg1
 msg2    db      "Aun se pasa"
