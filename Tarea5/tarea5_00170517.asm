@@ -18,6 +18,22 @@
         mov	    si, 160d 
         mov 	di, 50d
         call    vlinea5
+
+        mov 	si, 100d ;Columna(X)
+        mov 	di, 160d ;Fila(Y)
+        call 	hlinea1
+        mov 	si, 100d ;Columna(X)
+        mov 	di, 50d ;Fila(Y)
+        call 	hlinea2
+        mov 	si, 120d ;Columna(X)
+        mov 	di, 70d ;Fila(Y)
+        call 	hlinea3
+        mov 	si, 120d ;Columna(X)
+        mov 	di, 90d ;Fila(Y)
+        call 	hlinea4
+        mov 	si, 120d ;Columna(X)
+        mov 	di, 110d ;Fila(Y)
+        call 	hlinea5
         call    kb
         int     20h
 
@@ -78,4 +94,49 @@ vlinea5:mov 	cx, si
         inc 	di
         cmp 	di, 110d
         jne 	vlinea5
+        ret
+
+hlinea1:mov 	cx, 0d
+        add 	cx, si
+        mov	    dx, di
+        call 	pixel
+        inc 	si
+        cmp 	si, 120d
+        jne 	hlinea1
+        ret
+
+hlinea2:mov 	cx, 0d
+        add 	cx, si
+        mov	    dx, di
+        call 	pixel
+        inc 	si
+        cmp 	si, 160d
+        jne 	hlinea2
+        ret
+
+hlinea3:mov 	cx, 0d
+        add 	cx, si
+        mov	    dx, di
+        call 	pixel
+        inc 	si
+        cmp 	si, 140d
+        jne 	hlinea3
+        ret
+
+hlinea4:mov 	cx, 0d
+        add 	cx, si
+        mov	    dx, di
+        call 	pixel
+        inc 	si
+        cmp 	si, 140d
+        jne 	hlinea4
+        ret
+
+hlinea5:mov 	cx, 0d
+        add 	cx, si
+        mov	    dx, di
+        call 	pixel
+        inc 	si
+        cmp 	si, 160d
+        jne 	hlinea5
         ret
